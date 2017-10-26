@@ -5,15 +5,19 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from front.utils import E
+from core.models import *
 # from front.settings import settings
 from local_settings import *
-#import redis, time, pickle
 
 
-#@login_required
+# import redis, time, pickle
+
+
+# @login_required
 def index(request):
-    return render_to_response('advert.html')
-    #return HttpResponse(json.dumps(dict(error=u"武将初始化完成")), mimetype="application/json", status=200)
+    adverts = AdvertShip.objects.all()
+    return render_to_response('advert.html', {'adverts': adverts})
+    # return HttpResponse(json.dumps(dict(error=u"武将初始化完成")), mimetype="application/json", status=200)
 
     # @login_required
     # def gm(request):

@@ -11,11 +11,21 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User as AdminUser
 
 
-# class Item(models.Model):
-#     adverts = models.ManyToManyField(
-#         'Advert', through='AdvertShip', blank=True)
+class Category(models.Model):
+    title = models.CharField(_('Title'), max_length=20)
+    slug = models.SlugField(_('Slug'))
+
+    class Meta:
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categorys')
+        ordering = ('slug',)
+
+    def __unicode__(self):
+        return self.title
+
 
 class Advert(models.Model):
+    category = models.ForeignKey(Category, blank=True, null=True)
     title = models.CharField(_('Title'), max_length=50)
     timestamp = models.DateTimeField(auto_now=True, verbose_name=_('timestamp'))
     description = models.TextField(_('Description'), blank=True)
