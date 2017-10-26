@@ -10,7 +10,7 @@ from local_settings import *
 #import redis, time, pickle
 
 
-@login_required
+#@login_required
 def index(request):
     return render_to_response('advert.html')
     #return HttpResponse(json.dumps(dict(error=u"武将初始化完成")), mimetype="application/json", status=200)
